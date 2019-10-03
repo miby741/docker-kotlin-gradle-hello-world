@@ -5,6 +5,10 @@ To build fully executable jar invoke command:
 ```
 $ gradle build
 ```
+Jar library might be run by using command:
+```
+java -jar build/libs/kotlin-docker-gradle-app.jar
+```
 To create docker image:
 ```
 $ docker image -t image_name .
