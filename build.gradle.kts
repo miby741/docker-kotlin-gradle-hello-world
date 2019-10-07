@@ -1,18 +1,30 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
-    application
-    kotlin("jvm") version "1.3.21"
-    id("com.github.johnrengelman.shadow") version "4.0.4"
+    id("org.springframework.boot") version "2.1.9.RELEASE"
+    id("io.spring.dependency-management") version "1.0.8.RELEASE"
+    kotlin("jvm") version "1.2.71"
+    kotlin("plugin.spring") version "1.2.71"
 }
 
-application {
-    mainClassName = "MainKt"
+group = "com.example"
+version = "0.0.1-SNAPSHOT"
+java.sourceCompatibility = JavaVersion.VERSION_1_8
+
+repositories {
+    mavenCentral()
 }
 
 dependencies {
-    compile(kotlin("stdlib"))
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.jetbrains.kotlin:kotlin-reflect")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
-repositories {
-    jcenter()
+tasks.withType<KotlinCompile> {
+    kotlinOptions {
+        freeCompilerArgs = listOf("-Xjsr305=strict")
+        jvmTarget = "1.8"
+    }
 }
-
